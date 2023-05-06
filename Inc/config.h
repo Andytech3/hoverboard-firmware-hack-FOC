@@ -10,7 +10,7 @@
 // Ubuntu: define the desired build variant here if you want to use make in console
 // or use VARIANT environment variable for example like "make -e VARIANT=VARIANT_NUNCHUK". Select only one at a time.
 #if !defined(PLATFORMIO)
-  //#define VARIANT_ADC         // Variant for control via ADC input
+  #define VARIANT_ADC         // Variant for control via ADC input
   //#define VARIANT_USART       // Variant for Serial control via USART3 input
   //#define VARIANT_NUNCHUK     // Variant for Nunchuk controlled vehicle build
   //#define VARIANT_PPM         // Variant for RC-Remote with PPM-Sum Signal
@@ -76,7 +76,7 @@
 #define BAT_CALIB_REAL_VOLTAGE  3970      // input voltage measured by multimeter (multiplied by 100). In this case 43.00 V * 100 = 4300
 #define BAT_CALIB_ADC           1492      // adc-value measured by mainboard (value nr 5 on UART debug output)
 #define BAT_CELLS               10        // battery number of cells. Normal Hoverboard battery: 10s
-#define BAT_LVL2_ENABLE         0         // to beep or not to beep, 1 or 0
+#define BAT_LVL2_ENABLE         1         // to beep or not to beep, 1 or 0
 #define BAT_LVL1_ENABLE         1         // to beep or not to beep, 1 or 0
 #define BAT_DEAD_ENABLE         1         // to poweroff or not to poweroff, 1 or 0
 #define BAT_BLINK_INTERVAL      80        // battery led blink interval (80 loops * 5ms ~= 400ms)
@@ -148,13 +148,13 @@
 
 // Control selections
 #define CTRL_TYP_SEL    FOC_CTRL        // [-] Control type selection: COM_CTRL, SIN_CTRL, FOC_CTRL (default)
-#define CTRL_MOD_REQ    VLT_MODE        // [-] Control mode request: OPEN_MODE, VLT_MODE (default), SPD_MODE, TRQ_MODE. Note: SPD_MODE and TRQ_MODE are only available for CTRL_FOC!
-#define DIAG_ENA        1               // [-] Motor Diagnostics enable flag: 0 = Disabled, 1 = Enabled (default)
+#define CTRL_MOD_REQ    TRQ_MODE        // [-] Control mode request: OPEN_MODE, VLT_MODE (default), SPD_MODE, TRQ_MODE. Note: SPD_MODE and TRQ_MODE are only available for CTRL_FOC!
+#define DIAG_ENA        1               // [-] Diagnostika motorov pri zapnutí : 0 = Disabled, 1 = Enabled (default) 
 
 // Limitation settings
 #define I_MOT_MAX       15              // [A] Maximum single motor current limit
 #define I_DC_MAX        17              // [A] Maximum stage2 DC Link current limit for Commutation and Sinusoidal types (This is the final current protection. Above this value, current chopping is applied. To avoid this make sure that I_DC_MAX = I_MOT_MAX + 2A)
-#define N_MOT_MAX       1000            // [rpm] Maximum motor speed limit
+#define N_MOT_MAX       3000            // [rpm] Maximum motor speed limit
 
 // Field Weakening / Phase Advance
 #define FIELD_WEAK_ENA  0               // [-] Field Weakening / Phase Advance enable flag: 0 = Disabled (default), 1 = Enabled
@@ -174,8 +174,8 @@
 
 // ############################## DEFAULT SETTINGS ############################
 // Default settings will be applied at the end of this config file if not set before
-#define INACTIVITY_TIMEOUT        8       // Minutes of not driving until poweroff. it is not very precise.
-#define BEEPS_BACKWARD            1       // 0 or 1
+#define INACTIVITY_TIMEOUT        8       // Minuty pre auto off pri necinosti
+#define BEEPS_BACKWARD            1       // 0 or 1 Pípanie pri cúvaní
 #define ADC_MARGIN                100     // ADC input margin applied on the raw ADC min and max to make sure the MIN and MAX values are reached even in the presence of noise
 #define ADC_PROTECT_TIMEOUT       100     // ADC Protection: number of wrong / missing input commands before safety state is taken
 #define ADC_PROTECT_THRESH        200     // ADC Protection threshold below/above the MIN/MAX ADC values
@@ -213,7 +213,7 @@
 
 
 
-// ############################## CRUISE CONTROL SETTINGS ############################
+// ############################## CRUISE CONTROL SETTINGS ##########TEMPOMAT##########
 /* Cruise Control info:
  * enable CRUISE_CONTROL_SUPPORT and (SUPPORT_BUTTONS_LEFT or SUPPORT_BUTTONS_RIGHT depending on which cable is the button installed)
  * can be activated/deactivated by pressing button1 (Blue cable) to GND
@@ -250,7 +250,7 @@
 */
 
 // #define DEBUG_SERIAL_USART2          // left sensor board cable, disable if ADC or PPM is used!
-// #define DEBUG_SERIAL_USART3          // right sensor board cable, disable if I2C (nunchuk or lcd) is used!
+ //#define DEBUG_SERIAL_USART3          // right sensor board cable, disable if I2C (nunchuk or lcd) is used! !!!!!!!!!!!!!!!!ASI ODKOMENTOVAŤ !!!!!!!!!!!!!!!
 // #define DEBUG_SERIAL_PROTOCOL        // uncomment this to send user commands to the board, change parameters and print specific signals (see comms.c for the user commands)
 // ########################### END OF DEBUG SERIAL ############################
 
