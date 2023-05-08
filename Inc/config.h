@@ -502,7 +502,7 @@
   #undef  CTRL_MOD_REQ
   #define CTRL_MOD_REQ            TRQ_MODE  // HOVERCAR works best in TORQUE Mode. VOLTAGE mode is preffered when freewheeling is not desired when throttle is released.
   #define CONTROL_ADC             0         // use ADC as input. Number indicates priority for dual-input. Disable CONTROL_SERIAL_USART2, FEEDBACK_SERIAL_USART2, DEBUG_SERIAL_USART2!
-  #define SIDEBOARD_SERIAL_USART3 1         // Rx from right sensor board: to use photosensors as buttons. Number indicates priority for dual-input. Comment-out if sideboard is not used!
+  #define CONTROL_SERIAL_USART3 1       // right sensor board cable. Number indicates priority for dual-input. Disable if I2C (nunchuk or lcd) is used! For Arduino control check the hoverSerial.ino
   #define FEEDBACK_SERIAL_USART3            // Tx to   right sensor board: for LED battery indication. Comment-out if sideboard is not used!
 
   #define DUAL_INPUTS                       // ADC*(Primary) + Sideboard_R(Auxiliary). Uncomment this to use Dual-inputs
@@ -525,28 +525,28 @@
   // #define ELECTRIC_BRAKE_MAX    100         // (0, 500) Maximum electric brake to be applied when input torque request is 0 (pedal fully released).
   // #define ELECTRIC_BRAKE_THRES  120         // (0, 500) Threshold below at which the electric brake starts engaging.
 
-  #define MULTI_MODE_DRIVE                  // This option enables the selection of 3 driving modes at start-up using combinations of Brake and Throttle pedals (see below)
-  #ifdef MULTI_MODE_DRIVE
+  //#define MULTI_MODE_DRIVE                  // This option enables the selection of 3 driving modes at start-up using combinations of Brake and Throttle pedals (see below)
+  //#ifdef MULTI_MODE_DRIVE
       // BEGINNER MODE:     Power ON + Brake [released] + Throttle [released or pressed]
-      #define MULTI_MODE_DRIVE_M1_MAX   175
-      #define MULTI_MODE_DRIVE_M1_RATE  250
-      #define MULTI_MODE_M1_I_MOT_MAX   4
-      #define MULTI_MODE_M1_N_MOT_MAX   30
+     // #define MULTI_MODE_DRIVE_M1_MAX   175
+     // #define MULTI_MODE_DRIVE_M1_RATE  250
+    //  #define MULTI_MODE_M1_I_MOT_MAX   4
+    //  #define MULTI_MODE_M1_N_MOT_MAX   30
 
       // INTERMEDIATE MODE: Power ON + Brake [pressed] + Throttle [released]
-      #define MULTI_MODE_DRIVE_M2_MAX   500
-      #define MULTI_MODE_DRIVE_M2_RATE  300
-      #define MULTI_MODE_M2_I_MOT_MAX   8
-      #define MULTI_MODE_M2_N_MOT_MAX   80
+    //  #define MULTI_MODE_DRIVE_M2_MAX   500
+     // #define MULTI_MODE_DRIVE_M2_RATE  300
+     // #define MULTI_MODE_M2_I_MOT_MAX   8
+     // #define MULTI_MODE_M2_N_MOT_MAX   80
 
       // ADVANCED MODE:    Power ON + Brake [pressed] + Throttle [pressed]
       #define MULTI_MODE_DRIVE_M3_MAX   1000
       #define MULTI_MODE_DRIVE_M3_RATE  450
       #define MULTI_MODE_M3_I_MOT_MAX   I_MOT_MAX
       #define MULTI_MODE_M3_N_MOT_MAX   N_MOT_MAX
-  #endif
+  //#endif
 
-#endif
+//#endif
 
 // Multiple tap detection: default DOUBLE Tap on Brake pedal (4 pulses)
 #define MULTIPLE_TAP_NR           2 * 2       // [-] Define tap number: MULTIPLE_TAP_NR = number_of_taps * 2, number_of_taps = 1 (for single taping), 2 (for double tapping), 3 (for triple tapping), etc...
